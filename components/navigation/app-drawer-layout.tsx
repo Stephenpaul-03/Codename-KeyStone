@@ -9,16 +9,16 @@ import { useThemeMode } from '@/hooks/use-theme-mode';
 
 const drawerRoutes = [
   {
-    name: 'index',
-    label: 'Home',
-    focusedIcon: 'home',
-    unfocusedIcon: 'home-outline',
+    name: 'finances/transactions',
+    label: 'Transactions',
+    focusedIcon: 'cash-multiple',
+    unfocusedIcon: 'cash-multiple',
   },
   {
-    name: 'explore',
-    label: 'Explore',
-    focusedIcon: 'compass',
-    unfocusedIcon: 'compass-outline',
+    name: 'finances/insights',
+    label: 'Insights',
+    focusedIcon: 'chart-line',
+    unfocusedIcon: 'chart-line',
   },
 ] as const;
 
@@ -90,37 +90,14 @@ function AppDrawerContent(props: AppDrawerContentProps) {
           <List.AccordionGroup>
             <List.Accordion
               id="nav-1"
-              title="Accordion 1"
-              left={(leftProps) => <List.Icon {...leftProps} icon="menu" />}>
+              title="Finances"
+              left={(leftProps) => <List.Icon {...leftProps} icon="wallet" />}>
               {drawerRoutes.map((route) => {
                 const isActive = activeRouteName === route.name;
 
                 return (
                   <PaperDrawer.Item
                     key={`nav-1-${route.name}`}
-                    label={route.label}
-                    icon={isActive ? route.focusedIcon : route.unfocusedIcon}
-                    active={isActive}
-                    style={styles.drawerItemNoRadius}
-                    onPress={() => {
-                      props.navigation.navigate(route.name as never);
-                      props.navigation.closeDrawer();
-                    }}
-                  />
-                );
-              })}
-            </List.Accordion>
-
-            <List.Accordion
-              id="nav-2"
-              title="Accordion 2"
-              left={(leftProps) => <List.Icon {...leftProps} icon="menu" />}>
-              {drawerRoutes.map((route) => {
-                const isActive = activeRouteName === route.name;
-
-                return (
-                  <PaperDrawer.Item
-                    key={`nav-2-${route.name}`}
                     label={route.label}
                     icon={isActive ? route.focusedIcon : route.unfocusedIcon}
                     active={isActive}
@@ -212,8 +189,8 @@ export default function DrawerLayout() {
           width: isPermanentDrawer ? (isCollapsed ? 96 : 320) : undefined,
         },
       })}>
-      <Drawer.Screen name="index" options={{ title: 'Home' }} />
-      <Drawer.Screen name="explore" options={{ title: 'Explore' }} />
+      <Drawer.Screen name="finances/transactions" options={{ title: 'Transactions' }} />
+      <Drawer.Screen name="finances/insights" options={{ title: 'Insights' }} />
     </Drawer>
   );
 }
